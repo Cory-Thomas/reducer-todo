@@ -1,6 +1,26 @@
 import React, { useState, useReducer } from 'react';
+import styled from 'styled-components';
 import { initialState, reducer, ACTIONS} from "./reducers/reducer";
 import Todo from './Components/Todo';
+
+const StyledDiv = styled.div`
+  width: 50%;
+  margin: 0 auto;
+  text-align: center;
+
+  section {
+    margin: 4% auto;
+    margin-bottom: 8%;
+  }
+
+  form {
+    margin-bottom: 1%;
+  }
+
+  input {
+    margin: 0 .75%;
+  }
+`
 
 function App() {
   const [state, dispatch] = useReducer(reducer, initialState);
@@ -13,9 +33,11 @@ function App() {
   };
 
   return (
-    <>
+    <StyledDiv>
+      <h1>Todo Form</h1>
+      <section>
       <form onSubmit={handleSubmit}>
-        <label htmlFor='todo'> Todo: </label>
+        <label htmlFor='todo'> Todo:</label>
         <input 
           type='text' 
           id='todo' 
@@ -28,12 +50,13 @@ function App() {
         <button type='submit'> Add </button>
       </form>
       <button onClick={ () => dispatch({ type: ACTIONS.DELETE_ALL, payload: { state }})}> Delete All Completed </button>
+      </section>
       {
         state.map( todo => {
           return <Todo key={todo.id} todo={todo} dispatch={dispatch} />
         })
       }
-    </>
+    </StyledDiv>
   );
 }
 

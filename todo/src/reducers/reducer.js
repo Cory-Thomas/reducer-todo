@@ -9,11 +9,18 @@ export const ACTIONS = {
     DELETE_ALL: 'delete-all'
   };
 
-export const initialState = [{
-    item: 'Learn about reducers',
-    complete: false,
-    id: Date.now()
-}];
+export const initialState = [
+    {
+        item: 'Learn about reducers ',
+        complete: false,
+        id: Date.now()
+    },
+    {
+        item: 'Clean room ',
+        complete: false,
+        id: Date.now() + 1
+    },
+];
 
 export const reducer = (state, action) => {
     switch (action.type) {
