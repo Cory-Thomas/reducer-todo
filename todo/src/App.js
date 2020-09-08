@@ -50,7 +50,7 @@ function App() {
           id='todo' 
           name='todoText'
           value={todo}
-          placeholder='Type a to-do here'
+          placeholder='Type a TO-DO here'
           onChange={event => setTodo(
             event.target.value
           )}
