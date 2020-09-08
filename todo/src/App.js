@@ -19,7 +19,14 @@ const StyledDiv = styled.div`
 
   input {
     margin: 0 .75%;
+    padding: 1%;
   }
+
+  button{
+        margin: 1%;
+        padding: 1%;
+        width: 200px;
+    }
 `
 
 function App() {
@@ -34,7 +41,7 @@ function App() {
 
   return (
     <StyledDiv>
-      <h1>Todo Form</h1>
+      <h1>To-do Creator</h1>
       <section>
       <form onSubmit={handleSubmit}>
         <label htmlFor='todo'> Todo:</label>
@@ -43,6 +50,7 @@ function App() {
           id='todo' 
           name='todoText'
           value={todo}
+          placeholder='Type a to-do here'
           onChange={event => setTodo(
             event.target.value
           )}

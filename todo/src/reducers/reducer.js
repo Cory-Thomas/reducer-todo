@@ -6,19 +6,23 @@ export const ACTIONS = {
     ADD_TODO: 'add-todo',
     TOGGLE_TODO: 'toggle-todo',
     DELETE_TODO: 'delete-todo',
-    DELETE_ALL: 'delete-all'
+    DELETE_ALL: 'delete-all',
+    UPDATE_EDIT: 'update-edit',
+    UPDATE_ITEM: 'update-item'
   };
 
 export const initialState = [
     {
         item: 'Learn about reducers ',
         complete: false,
-        id: Date.now()
+        id: Date.now(), 
+        edit: false
     },
     {
         item: 'Clean room ',
         complete: false,
-        id: Date.now() + 1
+        id: Date.now() + 1,
+        edit: false
     },
 ];
 
@@ -47,6 +51,21 @@ export const reducer = (state, action) => {
             return (
                 state.filter( item => item.complete === false)
             )
+        case ACTIONS.UPDATE_EDIT:
+            return state.map( todo => {
+                if ( todo.id === action.payload.id ){
+                    return { ...todo, edit: !todo.edit } // reverses polarity of complete
+                }
+                return todo;
+            })
+
+        case ACTIONS.UPDATE_ITEM:
+            return state.map( todo => {
+                if ( todo.id === action.payload.id ){
+                    return { ...todo, item: action.textPayload, edit: false } // reverses polarity of complete
+                }
+                return todo;
+            })
         default: 
             return state;
     }
